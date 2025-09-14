@@ -1,0 +1,19 @@
+{
+  "name": "eerc-subgraph",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "manifest": "node scripts/render-manifest.js",
+    "codegen": "npm run manifest && graph codegen",
+    "build": "npm run manifest && graph build",
+    "deploy": "npm run manifest && graph deploy $npm_package_config_name --version-label v0.0.1 --node https://subgraphs.alchemy.com/api/subgraphs/deploy --deploy-key $DEPLOY_KEY --ipfs https://ipfs.satsuma.xyz",
+    "deploy:studio": "npm run manifest && graph deploy --studio $npm_package_config_name"
+  },
+  "config": {
+    "name": "wolf-cloak-fuji"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "0.70.0",
+    "@graphprotocol/graph-ts": "0.33.0"
+  }
+}

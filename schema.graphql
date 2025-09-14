@@ -1,0 +1,69 @@
+type PrivateTransfer @entity {
+  id: ID!
+  txHash: String!
+  block: BigInt!
+  timestamp: BigInt!
+  from: Bytes!
+  to: Bytes!
+  auditor: Bytes!
+  auditorPCT: [BigInt!]!
+  contract: Bytes!
+}
+
+type PrivateMint @entity {
+  id: ID!
+  txHash: String!
+  block: BigInt!
+  timestamp: BigInt!
+  user: Bytes!
+  auditor: Bytes!
+  auditorPCT: [BigInt!]!
+  contract: Bytes!
+}
+
+type PrivateBurn @entity {
+  id: ID!
+  txHash: String!
+  block: BigInt!
+  timestamp: BigInt!
+  user: Bytes!
+  auditor: Bytes!
+  auditorPCT: [BigInt!]!
+  contract: Bytes!
+}
+
+type Deposit @entity {
+  id: ID!
+  txHash: String!
+  block: BigInt!
+  timestamp: BigInt!
+  user: Bytes!
+  amount: BigInt!
+  dust: BigInt!
+  tokenId: BigInt!
+  contract: Bytes!
+}
+
+type Withdraw @entity {
+  id: ID!
+  txHash: String!
+  block: BigInt!
+  timestamp: BigInt!
+  user: Bytes!
+  amount: BigInt!
+  tokenId: BigInt!
+  auditor: Bytes!
+  auditorPCT: [BigInt!]!
+  contract: Bytes!
+}
+
+type AuditorChanged @entity {
+  id: ID!
+  txHash: String!
+  block: BigInt!
+  timestamp: BigInt!
+  oldAuditor: Bytes!
+  newAuditor: Bytes!
+  contract: Bytes!
+}
+

@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Build artifacts (Graph CLI / AssemblyScript)
+build/
+generated/
+dist/
+cache/
+.cache/
+
+# Environment and secrets
+.env
+.env.*
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# IPFS / deployment leftovers (if created locally)
+deployments/
+.ipfs/
+
+# Wasm outputs (should live under build/ but ignore just in case)
+*.wasm
+
+# Generated manifest (rendered from subgraph.template.yaml)
+subgraph.yaml
+
+# Note: keep core subgraph sources tracked (these are not ignored):
+# - schema.graphql
+# - src/
+# - abis/

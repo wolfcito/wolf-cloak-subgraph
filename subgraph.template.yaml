@@ -1,0 +1,74 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+
+dataSources:
+  - kind: ethereum/contract
+    name: EncryptedERCStandalone
+    network: fuji
+    source:
+      address: '${ENCRYPTEDERC_STANDALONE_ADDRESS}'
+      abi: EncryptedERC
+      startBlock: ${ENCRYPTEDERC_STANDALONE_START_BLOCK}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - PrivateTransfer
+        - PrivateMint
+        - PrivateBurn
+        - Withdraw
+        - AuditorChanged
+      abis:
+        - name: EncryptedERC
+          file: ./abis/EncryptedERC.json
+      eventHandlers:
+        - event: PrivateTransfer(indexed address,indexed address,uint256[7],indexed address)
+          handler: handlePrivateTransfer
+        - event: PrivateMint(indexed address,uint256[7],indexed address)
+          handler: handlePrivateMint
+        - event: PrivateBurn(indexed address,uint256[7],indexed address)
+          handler: handlePrivateBurn
+        - event: Withdraw(indexed address,uint256,uint256,uint256[7],indexed address)
+          handler: handleWithdraw
+        - event: AuditorChanged(indexed address,indexed address)
+          handler: handleAuditorChanged
+      file: ./src/mappings.ts
+
+  - kind: ethereum/contract
+    name: EncryptedERCConverter
+    network: fuji
+    source:
+      address: '${ENCRYPTEDERC_CONVERTER_ADDRESS}'
+      abi: EncryptedERC
+      startBlock: ${ENCRYPTEDERC_CONVERTER_START_BLOCK}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - PrivateTransfer
+        - PrivateMint
+        - PrivateBurn
+        - Deposit
+        - Withdraw
+        - AuditorChanged
+      abis:
+        - name: EncryptedERC
+          file: ./abis/EncryptedERC.json
+      eventHandlers:
+        - event: PrivateTransfer(indexed address,indexed address,uint256[7],indexed address)
+          handler: handlePrivateTransfer
+        - event: PrivateMint(indexed address,uint256[7],indexed address)
+          handler: handlePrivateMint
+        - event: PrivateBurn(indexed address,uint256[7],indexed address)
+          handler: handlePrivateBurn
+        - event: Deposit(indexed address,uint256,uint256,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,uint256,uint256,uint256[7],indexed address)
+          handler: handleWithdraw
+        - event: AuditorChanged(indexed address,indexed address)
+          handler: handleAuditorChanged
+      file: ./src/mappings.ts
+
